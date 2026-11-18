@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import io
 import re
+import joblib
 from difflib import SequenceMatcher
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
@@ -138,6 +139,13 @@ class DigitalTwinMLEngine:
         X_train_scaled = self.scaler.fit_transform(X_train)
         X_test_scaled = self.scaler.transform(X_test)
 # ****************************************************************************************************** 140, 220
+        # Path to serialized model artifacts
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        models_dir = os.path.join(base_dir, "models")
+        spike_path = os.path.join(models_dir, "spike_regressor.json")
+        risk_path = os.path.join(models_dir, "risk_classifier.json")
+        scaler_path = os.path.join(models_dir, "scaler.joblib")
+
         # Primary Model: XGBoost
         if HAS_XGBOOST:
             self.spike_model = xgb.XGBRegressor(
@@ -148,8 +156,6 @@ class DigitalTwinMLEngine:
                 colsample_bytree=0.85,
                 random_state=42
             )
-            self.spike_model.fit(X_train_scaled, y_peak_train)
-
             self.risk_model = xgb.XGBClassifier(
                 n_estimators=140,
                 learning_rate=0.05,
@@ -157,7 +163,19 @@ class DigitalTwinMLEngine:
                 random_state=42,
                 eval_metric='mlogloss'
             )
-            self.risk_model.fit(X_train_scaled, y_risk_train)
+
+            if os.path.exists(spike_path) and os.path.exists(risk_path) and os.path.exists(scaler_path):
+                self.spike_model.load_model(spike_path)
+                self.risk_model.load_model(risk_path)
+                self.scaler = joblib.load(scaler_path)
+            else:
+                self.spike_model.fit(X_train_scaled, y_peak_train)
+                self.risk_model.fit(X_train_scaled, y_risk_train)
+                os.makedirs(models_dir, exist_ok=True)
+                self.spike_model.save_model(spike_path)
+                self.risk_model.save_model(risk_path)
+                joblib.dump(self.scaler, scaler_path)
+
             self.architecture_used = "XGBoost (eXtreme Gradient Boosting)"
             
             # Extract explainable AI feature importances

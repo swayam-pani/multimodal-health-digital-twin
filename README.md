@@ -23,6 +23,8 @@ The **Multimodal Health Digital Twin** bridges this gap by enabling **pre-meal "
 
 ## 🏗️ System Architecture
 
+![System Architecture](docs/figures/fig_3_1_system_architecture.png)
+
 ```
 [ User Input: Food Photo / Text + Wearables (CGM, HRV, Sleep) ]
                                │
@@ -89,6 +91,8 @@ Using SciPy L-BFGS-B / Nelder-Mead optimization against patient CGM streams, the
 
 ## 📊 Benchmark Results (N = 1,500)
 
+![ML Model Comparison](docs/figures/fig_5_1_ml_model_comparison.png)
+
 Evaluated across 8 regression models on identical test cohorts:
 
 | Architecture | $R^2$ Score | MAE ($mg/dL$) | RMSE ($mg/dL$) |
@@ -103,6 +107,8 @@ Evaluated across 8 regression models on identical test cohorts:
 | Lasso Regression | 0.8194 | 15.92 | 21.50 |
 
 ### Closed-Loop Counterfactual Case Study (75g High-GI Meal)
+
+![Counterfactual Walk Simulation](docs/figures/fig_5_4_counterfactual_walk.png)
 * **Peak Blood Glucose:** $178.5 \rightarrow 142.1\text{ mg/dL}$ (**$-20.4\%$ blunted**)
 * **Pancreas $\beta$-Cell Strain:** $45.2\% \rightarrow 31.0\%$ (**$-14.2\text{ pt}$ reduction**)
 * **Glucose Curve AUC:** $32,450 \rightarrow 31,030$ (**$-1,420$ reduction**)
@@ -199,6 +205,19 @@ To run the full stack containerized:
 ```bash
 docker-compose up --build
 ```
+
+---
+
+### 4. Cloud Deployment (Render & Vercel)
+
+* **Backend (Render):**
+  1. Create a new Web Service on [Render](https://render.com) pointing to this repository.
+  2. The service uses the included `render.yaml` specification automatically.
+  3. Set environment variable `GEMINI_API_KEY` in the Render dashboard if image parsing is desired.
+* **Frontend (Vercel):**
+  1. Import this repository into [Vercel](https://vercel.com).
+  2. Set Root Directory to `frontend`.
+  3. Deploy! The included `vercel.json` proxies `/api/*` directly to the backend.
 
 ---
 
