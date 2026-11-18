@@ -1,0 +1,50 @@
+# Virtual Environment & Python
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node & Frontend Build
+node_modules/
+dist/
+build/
+.cache/
+
+# Environment Variables & Secrets (CRITICAL)
+.env
+.env.local
+.env.*.local
+*.env
+.agents/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Academic Reports, Presentations & Office Documents
+*.pdf
+*.pptx
+*.docx
+*.doc
+docs/*.md
+docs/*.html
+docs/*.pptx
+docs/*.docx
+docs/*.txt
+docs/~$*
+abra_pjt1.pdf
+merged_pj1_report.pdf
+PJT1_Report_{}1.docx.pdf
+Signed_Pages_PJT1_Report.pdf
+test_page.docx
