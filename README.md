@@ -8,6 +8,9 @@
 [![XGBoost](https://img.shields.io/badge/ML%20Engine-XGBoost-EB6440?style=flat-square)](https://xgboost.readthedocs.io/)
 [![SciPy](https://img.shields.io/badge/Physics%20ODE-SciPy%20RK45-8CAAE6?style=flat-square&logo=scipy)](https://scipy.org/)
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/swayam-pani/multimodal-health-digital-twin)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fswayam-pani%2Fmultimodal-health-digital-twin&root-directory=frontend)
+
 ---
 
 ## 📌 Overview & Motivation
