@@ -2,6 +2,9 @@
 
 > **Predicting post-meal glucose response with XGBoost and a physics-based Bergman ODE core.**
 
+🌐 **Live Demo:** [https://health-digital-twin-frontend.vercel.app](https://health-digital-twin-frontend.vercel.app)  
+📖 **API Docs (Swagger UI):** [https://health-digital-twin-backend.onrender.com/docs](https://health-digital-twin-backend.onrender.com/docs)
+
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
 [![Three.js](https://img.shields.io/badge/3D%20Avatar-Three.js-black?style=flat-square&logo=three.js)](https://threejs.org/)
